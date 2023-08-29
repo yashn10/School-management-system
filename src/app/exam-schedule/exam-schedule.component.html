@@ -1,0 +1,120 @@
+<h2 style="margin-top: 100px; text-align: center;">Exam Data</h2>
+<button type="button" class="btn btn-success mt-3 mb-3" (click)="openModal(template4)">Add
+  Exam Schedule</button>
+
+<form [formGroup]="positionForm">
+
+  <ng-template #template4>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Add Exam Details</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group text-center">
+        <img src="../assets/exam.png" style="width: 100px;">
+      </div>
+      <div class="form-group">
+        <label class="form-label" style="font-weight: 700;">Subject:</label>
+        <input type="text" class="form-control" placeholder="Enter Subject" formControlName="positionID">
+        <div class="red" *ngIf="issubmitted==true">
+          <div *ngIf="positionForm.controls['positionID'].errors?.['required']">
+            Subject is required..!</div>
+          <div *ngIf="positionForm.controls['positionID'].errors?.['minLength']">
+            Subject Name should be min 3 characters..!</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" style="font-weight: 700;">Total Marks:</label>
+        <input type="number" class="form-control" placeholder="Enter Total Marks" formControlName="positionName">
+        <div class="red" *ngIf="issubmitted==true">
+          <div *ngIf="positionForm.controls['positionID'].errors?.['required']">
+            Subject is required..!</div>
+          <div *ngIf="positionForm.controls['positionID'].errors?.['maxLength']">
+            Subject Name should be min 3 characters..!</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" style="font-weight: 700;">Exam Mode:</label>
+        <input type="email" class="form-control" placeholder="Enter Exam Mode" formControlName="positionType">
+        <div class="red" *ngIf="issubmitted==true">
+          <div *ngIf="positionForm.controls['positionID'].errors?.['required']">
+            Subject is required..!</div>
+          <div *ngIf="positionForm.controls['positionID'].errors?.['minLength']">
+            Subject Name should be min 3 characters..!</div>
+        </div>
+      </div>
+      <!-- <div class="form-group">
+        <label class="form-label" style="font-weight: 700;">Date:</label>
+        <input type="number" class="form-control" placeholder="Enter Exam Date" formControlName="examcontact3">
+      </div> -->
+      <button type="button" class="btn" style="background-color: #cbc6c6;border: none;"
+        (click)="clear3()">Clear</button>
+      <button type="submit" class="btn btn-success ml-3" (click)="submit3()"
+        *ngIf="iseditclicked3 == 'no'">Submit</button>
+      <button type="button" class="btn btn-success ml-3" *ngIf="iseditclicked3 == 'yes' "
+        (click)="update3()">Update</button>
+    </div>
+  </ng-template>
+
+</form>
+
+<table class="table table-hover datatable text-center" style="margin-top: 10px;" style="height: 400px;">
+  <thead>
+    <tr style="text-align: center;">
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Email</th>
+      <!-- <th>Contact</th> -->
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let statement of statementlist; let i = index">
+      <td>{{statement.positionID}}</td>
+      <td>{{statement.positionName}}</td>
+      <td>{{statement.positionType}}</td>
+      <!-- <td style="width: 270px;">{{statement.contact3}}</td> -->
+      <td style="width: 260px;">
+        <button type="button" class="btn" (click)="edit3(i)" (click)="openModal(template4)"><img
+            src="../assets/edit (1).png" style="width: 30px;">
+          <!-- <ng-template #template4>
+            <div class="modal-header">
+              <h4 class="modal-title pull-left">Update Exam Schedule</h4>
+              <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+                <span aria-hidden="true" class="visually-hidden">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label class="form-label" style="font-weight: 700;">Subject:</label>
+                <input type="text" class="form-control" placeholder="Enter subject" formControlName="positionID">
+              </div>
+              <div class="form-group">
+                <label class="form-label" style="font-weight: 700;">Total Marks:</label>
+                <input type="number" class="form-control" placeholder="Enter total marks" formControlName="positionName">
+              </div>
+              <div class="form-group">
+                <label class="form-label" style="font-weight: 700;">Mode of exam:</label>
+                <input type="email" class="form-control" placeholder="Enter mode of exam" formControlName="positionType">
+              </div>
+             <div class="form-group">
+                <label class="form-label" style="font-weight: 700;">Date:</label>
+                <input type="number" class="form-control" placeholder="Enter date of exam" formControlName="examcontact3">
+              </div> 
+              <button type="button" class="btn" style="background-color: #cbc6c6;border: none;"
+                (click)="clear3()">Clear</button>
+              <button type="button" class="btn btn-success ml-3" (click)="submit3()"
+                *ngIf="iseditclicked3 == 'no' ">Submit</button>
+              <button type="button" class="btn btn-success ml-3" *ngIf="iseditclicked3 == 'yes' "
+                (click)="update3()">Update</button>
+            </div>
+          </ng-template> -->
+        </button>
+        <button type="button" class="btn" (click)="delete3(i)"><img src="../assets/delete (3).png"
+            style="width: 30px;"></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
